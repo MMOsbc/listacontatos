@@ -84,3 +84,31 @@ void salvarContatos(ListaDeContatos lt, const char *arquivo) {
     printf("Contatos salvos com sucesso no arquivo: %s\n", arquivo);
 }
 
+void deletarContato(ListaDeContatos *lt) {
+    int posicao = -1;
+    char telefone[15];
+    printf("Digite o número de telefone do contato que deseja deletar: ");
+    scanf("%s", telefone);
+
+    // Procurar o contato pelo telefone
+    for (int i = 0; i < lt->qtd; i++) {
+        if (strcmp(lt->contatos[i].telefone, telefone) == 0) {
+            posicao = i;
+            break;
+        }
+    }
+
+    if (posicao == -1) {
+        printf("Contato com o telefone %s não encontrado.\n", telefone);
+        return;
+    }
+
+    // Remover o contato encontrando deslocando os contatos restantes para a esquerda
+    for (int i = posicao; i < lt->qtd - 1; i++) {
+        lt->contatos[i] = lt->contatos[i + 1];
+    }
+
+    lt->qtd--;
+
+    printf("Contato com o telefone %s deletado com sucesso.\n", telefone);
+}
