@@ -33,6 +33,9 @@ int main() {
             case 5:
                 printf("Que pena que escolheu sair. Até breve!\n");
                 return 0; // Encerra o programa
+            case 6: 
+                deletarContato(&listaContatos);
+                break; 
             default:
                 printf("Opção inválida. Tente novamente.\n");
         }
