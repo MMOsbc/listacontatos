@@ -17,5 +17,6 @@ void cadastrarContatos(ListaDeContatos *lt);
 void listarContatos(ListaDeContatos lt);
 void salvarContatos(ListaDeContatos lt, const char *arquivo);
 void carregarContatos(ListaDeContatos *lt, const char *arquivo);
+void deletarContato(ListaDeContatos *lt);
 
 #endif /* FUNCOES_H */
