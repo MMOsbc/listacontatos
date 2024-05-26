@@ -1,8 +1,16 @@
-cmake_minimum_required(VERSION 3.26)
-project(untitled6 C)
+all: main
 
-set(CMAKE_C_STANDARD 11)
+CC = clang
+override CFLAGS += -g -Wno-everything -pthread -lm
 
-add_executable(untitled6 main.c
-        funcoes.c
-        funcoes.h)
+SRCS = $(shell find . -name '.ccls-cache' -type d -prune -o -type f -name '*.c' -print)
+HEADERS = $(shell find . -name '.ccls-cache' -type d -prune -o -type f -name '*.h' -print)
+
+main: $(SRCS) $(HEADERS)
+		$(CC) $(CFLAGS) $(SRCS) -o "$@"
+
+main-debug: $(SRCS) $(HEADERS)
+		$(CC) $(CFLAGS) -O0 $(SRCS) -o "$@"
+
+clean:
+		rm -f main main-debug
